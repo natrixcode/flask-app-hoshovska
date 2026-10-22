@@ -1,44 +1,96 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section id="about" class="mb-5 text-center">
-        <h1>Привіт, я Розробник!</h1>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Моє фото" class="rounded-circle img-fluid profile-img mb-3">
-        <p class="lead">Короткий опис про себе. Я захоплююсь веб-розробкою на Python та Flask.</p>
+    <section id="about">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Nataliia Hoshovska" class="profile-img">
+            </div>
+            <div class="col-md-8">
+                <div class="note" style="position: static; margin-bottom: 20px; text-align: left; transform: none; box-shadow: none; width: auto; max-width: none;">
+                    > hello, i'm Nataliia Hoshovska!
+                </div>
+                <p class="lead">
+                    I'm a creative designer who loves turning ideas into visually engaging experiences. Skilled in 2D art, web and UI design, packaging, and social media content, I bring original concepts to life with attention to detail and cohesive style.
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:mindnotes.work@gmail.com">mindnotes.work@gmail.com</a><br>
+                    <strong>Phone:</strong> +380507224493<br>
+                    <strong>Instagram:</strong> <a href="https://instagram.com/nata.yeah" target="_blank">@nata.yeah</a>
+                </p>
+            </div>
+        </div>
     </section>
 
-    <section id="education" class="mb-5">
-        <h2>Освіта</h2>
-        <ul class="list-group">
-            <li class="list-group-item">Національний університет — Комп'ютерні науки (2022-2026)</li>
-        </ul>
+    <section id="education">
+        <h2>my_education</h2>
+        <p class="lead">I am currently pursuing a Bachelor's degree in Software Engineering at Vasyl Stefanyk Precarpathian National University.</p>
+        
+        <div class="card mt-4">
+            <div class="card-title">Vasyl Stefanyk Carpathian National University</div>
+            <div class="card-text">
+                Bachelor's degree in Software Engineering<br>
+                September 24 - Present
+            </div>
+        </div>
     </section>
 
-    <section id="skills" class="mb-5">
-        <h2>Навички та Технології</h2>
+    <section id="skills">
+        <h2>my_personal_skills</h2>
         <div class="row">
             <div class="col-md-6">
-                <ul>
-                    <li>Python / Flask</li>
-                    <li>HTML5 / CSS3</li>
-                </ul>
+                <h3>2D Game Design / Brand Design & Packaging</h3>
+                <p>I create cohesive visual experiences by designing 2D game assets, branded visuals, and product packaging, ensuring each project is engaging, consistent, and tailored to its audience.</p>
+                
+                <h3>Figma & Adobe Illustrator</h3>
+                <p>I create precise vector graphics, illustrations, and interactive interfaces using Adobe Illustrator and Figma, designing layouts and prototypes for web, app, and digital projects.</p>
             </div>
             <div class="col-md-6">
-                <ul>
-                    <li>Git / GitHub</li>
-                    <li>Bootstrap</li>
-                </ul>
+                <h3>Web-Development</h3>
+                <p>I design and build responsive, user-friendly websites using HTML, CSS, and JavaScript, turning layouts and prototypes into functional digital experiences.</p>
+                
+                <div class="card mt-4">
+                    <div class="card-title">Tools & Software</div>
+                    <div class="card-text">
+                        <ul>
+                            <li>2D Design, 2D Game Design</li>
+                            <li>Adobe Illustrator, Photoshop, Figma</li>
+                            <li>Book Illustration</li>
+                            <li>HTML/CSS/JS, Website Development</li>
+                            <li>Procreate</li>
+                            <li>Video Editing</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="mb-5">
-        <h2>Проекти</h2>
+    <section id="experience">
+        <h2>my_work_experience</h2>
+        
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Лабораторна робота 2</h5>
-                <p class="card-text">Створення сайту-резюме з використанням Flask, Jinja2 та Bootstrap.</p>
-            </div>
+            <div class="card-title">2D Game Designer - Playcus Limited</div>
+            <div class="card-text">Designed full 2D artwork for the mobile game "Battle Hero: Survival.io", including characters, environments, and UI elements. Collaborated with developers, ensured asset consistency, and optimized designs for performance. Strengthened skills in 2D game design, creativity, and teamwork.</div>
         </div>
+
+        <div class="card">
+            <div class="card-title">Social Media Manager & Visual Designer - KYT</div>
+            <div class="card-text">Manage Instagram & Facebook [@prostir_kyt], creating content, layouts, color schemes, and 28 custom icons. Film, edit, post content, plan schedules, and moderate the website to maintain consistent online presence and engagement.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Web Designer - Helium IF</div>
+            <div class="card-text">Designed full website including layout, pages, UI elements, and responsive versions for desktop, tablet, and mobile. Ensured intuitive navigation, clear CTAs, and consistent visual identity; prepared mockups for developer handoff.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Branding & Packaging Designer - Microgreen.Frankivsk</div>
+            <div class="card-text">Created packaging and brand identity for frozen wheatgrass juice, designing labels, typography, and graphics optimized for printing. Collaborated with production teams to ensure clarity, legibility, and visual appeal.</div>
+        </div>
+    </section>
+
+    <section class="text-center">
+        <a href="https://www.behance.net/gallery/234979395/Graphic-Designer-Portfolio-%283-projects%29" target="_blank" class="btn">View Full Portfolio on Behance</a>
     </section>
 {% endblock %}

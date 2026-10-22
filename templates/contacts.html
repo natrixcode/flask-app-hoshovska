@@ -2,23 +2,42 @@
 
 {% block content %}
     <section id="contacts">
-        <h2>Зв'яжіться зі мною</h2>
-        <p>Заповніть форму нижче (це заглушка, відправка не працює).</p>
+        <h2>contact_me</h2>
+        <p class="lead mb-4">Feel free to reach out for collaborations or just a friendly hello!</p>
         
-        <form action="#" method="POST" class="mt-4">
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card-title">Email</div>
+                <a href="mailto:mindnotes.work@gmail.com">mindnotes.work@gmail.com</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card-title">Phone</div>
+                <span>+380507224493</span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card-title">Instagram</div>
+                <a href="https://instagram.com/nata.yeah" target="_blank">@nata.yeah</a>
+            </div>
+        </div>
+
+        <hr>
+        
+        <h3 class="mt-4 mb-4">> send_message.sh</h3>
+        
+        <form action="#" method="POST">
             <div class="mb-3">
-                <label for="name" class="form-label">Ваше ім'я</label>
-                <input type="text" class="form-control" id="name" placeholder="Введіть ім'я">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" placeholder="name@example.com">
             </div>
             <div class="mb-3">
-                <label for="message" class="form-label">Повідомлення</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Type your message here..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Відправити</button>
+            <button type="submit" class="btn">Send Message</button>
         </form>
     </section>
 {% endblock %}
