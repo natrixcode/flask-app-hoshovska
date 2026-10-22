@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="about" class="mb-5 text-center">
+        <h1>Привіт, я Розробник!</h1>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Моє фото" class="rounded-circle img-fluid profile-img mb-3">
+        <p class="lead">Короткий опис про себе. Я захоплююсь веб-розробкою на Python та Flask.</p>
+    </section>
+
+    <section id="education" class="mb-5">
+        <h2>Освіта</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Національний університет — Комп'ютерні науки (2022-2026)</li>
+        </ul>
+    </section>
+
+    <section id="skills" class="mb-5">
+        <h2>Навички та Технології</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul>
+                    <li>Python / Flask</li>
+                    <li>HTML5 / CSS3</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>Git / GitHub</li>
+                    <li>Bootstrap</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="mb-5">
+        <h2>Проекти</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Лабораторна робота 2</h5>
+                <p class="card-text">Створення сайту-резюме з використанням Flask, Jinja2 та Bootstrap.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
