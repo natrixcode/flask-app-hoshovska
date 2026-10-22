@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand" href="{{ url_for('resume') }}">natrix_dev</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}">resume</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">contacts</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('products.list_products') }}">products</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('users.greetings', name='Guest') }}">users</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">homepage</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

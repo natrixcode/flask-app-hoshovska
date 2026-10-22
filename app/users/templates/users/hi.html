@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-title">Navigation</div>
+            <ul class="list-unstyled">
+                <li><a href="{{ url_for('resume') }}">Resume</a></li>
+                <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
+                <li><a href="{{ url_for('users.admin') }}">Admin Redirect</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h1>Hello :)</h1>
+        <h3>User: <span style="color: var(--accent);">{{ name }}</span></h3>
+        {% if age %}
+            <h3>Age: <span style="color: var(--accent);">{{ age }}</span></h3>
+        {% else %}
+            <h3>Age: <span style="color: #ff6b6b;">Not provided</span></h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
