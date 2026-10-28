@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 
 auth_bp = Blueprint('auth', __name__, template_folder='templates')
 
-# Заглушки для автентифікації (Логін: admin, Пароль: password123)
 USER_CREDENTIALS = {"admin": "password123"}
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -27,9 +26,7 @@ def profile():
         flash('Будь ласка, увійдіть у систему.', 'warning')
         return redirect(url_for('auth.login'))
     
-    # Отримуємо тему з кукі (за замовчуванням світла)
-    theme = request.cookies.get('theme', 'light')
-    # Отримуємо всі кукі для таблиці
+    theme = request.cookies.get('theme', 'dark')
     cookies_list = request.cookies
     
     return render_template('auth/profile.html', username=session['username'], theme=theme, cookies=cookies_list)
@@ -40,7 +37,6 @@ def logout():
     flash('Ви вийшли з системи.', 'info')
     return redirect(url_for('auth.login'))
 
-# --- Робота з кукі ---
 
 @auth_bp.route('/add_cookie', methods=['POST'])
 def add_cookie():
@@ -82,7 +78,6 @@ def delete_all_cookies():
     flash('Всі кукі видалено.', 'success')
     return resp
 
-# --- Зміна кольорової схеми (Тема) ---
 
 @auth_bp.route('/set_theme/<theme_name>')
 def set_theme(theme_name):
