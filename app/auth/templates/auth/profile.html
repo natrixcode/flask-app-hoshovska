@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section style="text-align: center;">
+    <h1>Ласкаво просимо до сторінки, {{ username }}!</h1>
+    <p class="lead">Тут ви можете керувати інформацією та вийти з системи.</p>
+    
+    <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 20px; flex-wrap: wrap;">
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Вийти</a>
+        
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="font-family: var(--mono); font-size: 12px; color: var(--muted);">Тема:</span>
+            <a href="{{ url_for('auth.set_theme', theme_name='light') }}" class="btn btn-theme {% if theme == 'light' %}active{% endif %}">Світла</a>
+            <a href="{{ url_for('auth.set_theme', theme_name='dark') }}" class="btn btn-theme {% if theme == 'dark' %}active{% endif %}">Темна</a>
+        </div>
+    </div>
+</section>
+
+<div class="profile-grid">
+    <div>
+        <section>
+            <h2>Додати кукі</h2>
+            <form method="POST" action="{{ url_for('auth.add_cookie') }}">
+                <label class="form-label">Ключ</label>
+                <input type="text" name="cookie_key" class="form-control" required>
+                
+                <label class="form-label">Значення</label>
+                <input type="text" name="cookie_value" class="form-control" required>
+                
+                <label class="form-label">Термін (днів)</label>
+                <input type="number" name="cookie_days" class="form-control" value="1" min="1" required>
+                
+                <button class="btn" type="submit" style="width: 100%;">Додати</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Видалити кукі</h2>
+            <form method="POST" action="{{ url_for('auth.delete_cookie') }}">
+                <label class="form-label">Ключ кукі</label>
+                <input type="text" name="cookie_key" class="form-control" required>
+                <button class="btn btn-warning" type="submit" style="width: 100%;">Видалити за ключем</button>
+            </form>
+            
+            <hr>
+            
+            <form method="POST" action="{{ url_for('auth.delete_all_cookies') }}">
+                <button class="btn btn-danger" type="submit" style="width: 100%;">Видалити всі кукі</button>
+            </form>
+        </section>
+    </div>
+
+    <div>
+        <section>
+            <h2>Список всіх кукі</h2>
+            <div style="overflow-x: auto;">
+                <table class="cookie-table">
+                    <thead>
+                        <tr>
+                            <th>Ключ</th>
+                            <th>Значення</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, value in cookies.items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td class="cookie-value">{{ value[:40] }}{% if value|length > 40 %}...{% endif %}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="2" style="padding: 20px; text-align: center; color: var(--muted);">Кукі відсутні</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+        margin-top: 24px;
+    }
+
+    .btn-danger { background: #ff4d4d !important; color: white !important; border: none; }
+    .btn-warning { background: #ffaa00 !important; color: #000 !important; border: none; }
+    
+    .btn-theme {
+        padding: 8px 16px !important;
+        font-size: 12px !important;
+        background: transparent !important;
+        border: 1px solid var(--border-hi) !important;
+        color: var(--text) !important;
+    }
+    .btn-theme.active {
+        background: var(--accent) !important;
+        color: var(--bg) !important;
+        border-color: var(--accent) !important;
+    }
+
+    .cookie-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--mono);
+        font-size: 13px;
+    }
+    .cookie-table th {
+        padding: 10px;
+        color: var(--accent);
+        text-align: left;
+        border-bottom: 1px solid var(--border-hi);
+    }
+    .cookie-table td {
+        padding: 10px;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+    }
+    .cookie-table .cookie-value {
+        color: var(--muted);
+        word-break: break-all;
+    }
+
+    @media (max-width: 768px) {
+        .profile-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

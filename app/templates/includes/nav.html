@@ -11,6 +11,11 @@
         <li class="nav-item"><a class="nav-link" href="{{ url_for('products.list_products') }}">products</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url_for('users.greetings', name='Guest') }}">users</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">homepage</a></li>
+        {% if session.get('username') %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.profile') }}" style="color: var(--accent) !important;">profile</a></li>
+        {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">login</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
