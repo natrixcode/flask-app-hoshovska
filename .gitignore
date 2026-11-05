@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+logs/
+data/*.json
+app/products/static/uploads/*
+!app/products/static/uploads/.gitkeep
+
+# Python
+.venv/
+.venv-1/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Runtime data
+logs/
+data/*.json
+app/products/static/uploads/
+
+# Local evidence
+lab5_evidence/

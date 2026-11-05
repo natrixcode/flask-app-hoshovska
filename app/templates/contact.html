@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% from 'macros.html' import render_field %}
+{% block title %}Контактна форма{% endblock %}{% block content %}
+<div class="panel narrow"><span class="eyebrow">Завдання 1</span><h1>Контактна форма</h1><p class="muted">Заповніть поля та надішліть повідомлення.</p>
+<form method="post" novalidate>{{ form.hidden_tag() }}
+{{ render_field(form.name) }}{{ render_field(form.email) }}{{ render_field(form.phone) }}{{ render_field(form.subject) }}{{ render_field(form.message) }}
+{{ form.submit(class_='button full') }}</form></div>{% endblock %}
