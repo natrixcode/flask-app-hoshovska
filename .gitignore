@@ -25,3 +25,6 @@ app/products/static/uploads/
 
 # Local evidence
 lab5_evidence/
+
+# Local database and generated data
+/data/
