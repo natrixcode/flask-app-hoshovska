@@ -1,16 +1,54 @@
 {% extends 'base.html' %}
+{% from 'macros/forms.html' import render_field %}
+
+{% block title %}
+    {{ 'Редагувати' if editing else 'Новий пост' }}
+{% endblock %}
+
 
 {% block css %}
-<link href="{{ url_for('posts.static', filename='css/posts.css') }}" rel="stylesheet">
-{% endblock %}{% from 'macros/forms.html' import render_field %}
-
-{% block title %}{{ 'Редагувати' if editing else 'Новий пост' }}
+    <link
+        rel="stylesheet"
+        href="{{ url_for('posts.static', filename='css/posts.css') }}"
+    >
 {% endblock %}
-{% block content %}<div class="article-shell">
-<div class="eyebrow">POST STUDIO / EDITOR</div>
-<h1 class="fw-bold mb-4">{{ 'Редагування публікації' if editing else 'Нова публікація' }}</h1>
-<form method="post" novalidate>{{ form.hidden_tag() }}{{ render_field(form.title) }}{{ render_field(form.content) }}<div class="row">
-<div class="col-md-6">{{ render_field(form.category) }}</div>
-<div class="col-md-6">{{ render_field(form.publish_date) }}</div></div>
-<div class="form-check mb-4">{{ form.enabled(class='form-check-input') }}{{ form.enabled.label(class='form-check-label') }}</div>{{ form.submit(class='btn btn-dark px-4') }}<a class="btn btn-link text-muted" href="{{ url_for('posts.detail_post', id=post.id) if editing else url_for('posts.all_posts') }}">Скасувати</a></form></div>
+
+{% block content %}
+    <div class="article-shell">
+        <div class="eyebrow">
+            POST STUDIO / EDITOR
+        </div>
+
+        <h1 class="fw-bold mb-4">
+            {{ 'Редагування публікації' if editing else 'Нова публікація' }}
+        </h1>
+
+        <form method="post" novalidate>
+            {{ form.hidden_tag() }}
+
+            {{ render_field(form.title) }}
+            {{ render_field(form.content) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ render_field(form.category) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ render_field(form.publish_date) }}
+                </div>
+            </div>
+
+            {{ render_field(form.enabled) }}
+
+            {{ form.submit(class="btn btn-dark px-4") }}
+
+            <a
+                class="btn btn-link text-muted"
+                href="{{ url_for('posts.detail_post', id=post.id) if editing else url_for('posts.all_posts') }}"
+            >
+                Скасувати
+            </a>
+        </form>
+    </div>
 {% endblock %}

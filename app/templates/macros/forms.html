@@ -1,4 +1,45 @@
-{% macro render_field(field) %}<div class="mb-4">{{ field.label(class='form-label fw-semibold') }}{{ field(class='form-control' + (' is-invalid' if field.errors else ''), **{'rows': 6} if field.type == 'TextAreaField' else {}) }}
-{% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>
-{% endfor %}</div>
+{% macro render_field(field) %}
+    {% if field.type == 'BooleanField' %}
+        <div class="form-check mb-4">
+            {{ field(class="form-check-input") }}
+            {{ field.label(class="form-check-label") }}
+
+            {% for error in field.errors %}
+                <div class="text-danger small">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="mb-4">
+            {{ field.label(class="form-label fw-semibold") }}
+
+            {% if field.type == 'SelectField' %}
+                {{ field(
+                    class="form-select" + (
+                        " is-invalid" if field.errors else ""
+                    )
+                ) }}
+            {% elif field.type == 'TextAreaField' %}
+                {{ field(
+                    class="form-control" + (
+                        " is-invalid" if field.errors else ""
+                    ),
+                    rows=6
+                ) }}
+            {% else %}
+                {{ field(
+                    class="form-control" + (
+                        " is-invalid" if field.errors else ""
+                    )
+                ) }}
+            {% endif %}
+
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endmacro %}
