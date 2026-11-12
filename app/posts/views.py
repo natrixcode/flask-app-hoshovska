@@ -32,22 +32,20 @@ def create_post():
 @post_bp.route('/<int:id>/update', methods=['GET', 'POST'])
 def update_post(id):
     post = db.get_or_404(Post, id)
-    form = PostForm()
+    form = PostForm(obj=post)
+
+    if not form.is_submitted():
+        form.publish_date.data = post.posted
+        form.enabled.data = post.is_active
+
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.content = form.content.data
-        post.category = form.category.data
+        form.populate_obj(post)
         post.posted = form.publish_date.data
         post.is_active = form.enabled.data
+
         db.session.commit()
         flash('Публікацію оновлено', 'success')
         return redirect(url_for('posts.detail_post', id=post.id))
-    if not form.is_submitted():
-        form.title.data = post.title
-        form.content.data = post.content
-        form.category.data = post.category
-        form.publish_date.data = post.posted
-        form.enabled.data = post.is_active
     return render_template('posts/add_post.html', form=form, editing=True, post=post)
 
 @post_bp.route('/<int:id>/delete', methods=['GET', 'POST'])

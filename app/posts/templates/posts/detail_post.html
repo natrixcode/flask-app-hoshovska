@@ -1,1 +1,15 @@
-{% extends 'base.html' %}{% block title %}{{ post.title }}{% endblock %}{% block content %}<a href="{{ url_for('posts.all_posts') }}" class="text-muted text-decoration-none">← Усі публікації</a><div class="article-shell mt-4"><span class="category">{{ post.category }}</span>{% if not post.is_active %}<span class="badge text-bg-secondary ms-2">Прихований</span>{% endif %}<h1 class="display-5 fw-bold mt-3">{{ post.title }}</h1><p class="text-muted">{{ post.author }} · {{ post.posted.strftime('%d.%m.%Y %H:%M') }}</p><hr class="my-4"><div class="article-content">{{ post.content }}</div><hr class="my-4"><div class="d-flex gap-2"><a class="btn btn-dark" href="{{ url_for('posts.update_post', id=post.id) }}">Редагувати</a><a class="btn btn-outline-danger" href="{{ url_for('posts.delete_post', id=post.id) }}">Видалити</a></div></div>{% endblock %}
+{% extends 'base.html' %}
+
+{% block css %}
+<link href="{{ url_for('posts.static', filename='css/posts.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}{{ post.title }}
+{% endblock %}
+{% block content %}<a href="{{ url_for('posts.all_posts') }}" class="text-muted text-decoration-none">← Усі публікації</a>
+<div class="article-shell mt-4"><span class="category">{{ post.category }}</span>
+{% if not post.is_active %}<span class="badge text-bg-secondary ms-2">Прихований</span>
+{% endif %}<h1 class="display-5 fw-bold mt-3">{{ post.title }}</h1>
+<p class="text-muted">{{ post.author }} · {{ post.posted.strftime('%d.%m.%Y %H:%M') }}</p><hr class="my-4">
+<div class="article-content">{{ post.content }}</div><hr class="my-4">
+<div class="d-flex gap-2"><a class="btn btn-dark" href="{{ url_for('posts.update_post', id=post.id) }}">Редагувати</a><a class="btn btn-outline-danger" href="{{ url_for('posts.delete_post', id=post.id) }}">Видалити</a></div></div>
+{% endblock %}

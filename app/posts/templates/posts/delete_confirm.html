@@ -1,1 +1,13 @@
-{% extends 'base.html' %}{% block title %}Видалити пост{% endblock %}{% block content %}<div class="article-shell"><div class="eyebrow text-danger">ПІДТВЕРДЖЕННЯ</div><h1 class="fw-bold mt-2">Видалити публікацію?</h1><p>Ви впевнені, що хочете видалити <strong>{{ post.title }}</strong>? Цю дію неможливо скасувати.</p><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">Так, видалити</button><a class="btn btn-outline-dark" href="{{ url_for('posts.detail_post', id=post.id) }}">Скасувати</a></form></div>{% endblock %}
+{% extends 'base.html' %}
+
+{% block css %}
+<link href="{{ url_for('posts.static', filename='css/posts.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}Видалити пост
+{% endblock %}
+{% block content %}<div class="article-shell">
+<div class="eyebrow text-danger">ПІДТВЕРДЖЕННЯ</div>
+<h1 class="fw-bold mt-2">Видалити публікацію?</h1>
+<p>Ви впевнені, що хочете видалити <strong>{{ post.title }}</strong>? Цю дію неможливо скасувати.</p>
+<form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-danger">Так, видалити</button><a class="btn btn-outline-dark" href="{{ url_for('posts.detail_post', id=post.id) }}">Скасувати</a></form></div>
+{% endblock %}
