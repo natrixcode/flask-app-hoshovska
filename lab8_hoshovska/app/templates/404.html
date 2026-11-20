@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block title %}404 — Не знайдено{% endblock %}{%
+block content %}
+<div class="text-center py-5">
+    <div class="display-1 fw-bold">404</div>
+    <h1>Сторінку не знайдено</h1>
+    <p class="text-muted">Перевірте адресу або поверніться до публікацій.</p>
+    <a class="btn btn-dark" href="{{ url_for('posts.all_posts') }}"
+        >До публікацій</a
+    >
+</div>
+{% endblock %}
