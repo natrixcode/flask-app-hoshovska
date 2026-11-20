@@ -41,7 +41,6 @@ class ORMRelationshipTests(unittest.TestCase):
             title="Тестова публікація",
             content="Перевірка ORM-зв'язків.",
             category="tech",
-            author="TestUser",
             user=user,
             tags=[python_tag, flask_tag],
         )

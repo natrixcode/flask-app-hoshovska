@@ -91,9 +91,7 @@ def create_post():
     set_tag_choices(form)
 
     if form.validate_on_submit():
-        author = str(session.get("username") or "Anonymous")[:20]
-
-        post = Post(author=author)
+        post = Post()
 
         populate_post(form, post)
         save_post_tags(form, post)

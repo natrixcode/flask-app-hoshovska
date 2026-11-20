@@ -71,13 +71,6 @@ class Post(db.Model):
     is_active: Mapped[bool] = mapped_column(
         Boolean, default=True, server_default="1", nullable=False
     )
-    author: Mapped[str] = mapped_column(
-        String(20),
-        default="Anonymous",
-        server_default="Anonymous",
-        nullable=False,
-    )
-
     user_id: Mapped[int | None] = mapped_column(
         ForeignKey("user.id", name="fk_post_user_id"),
         nullable=True,
