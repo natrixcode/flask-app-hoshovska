@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% from 'macros.html' import render_field %}{% block
+title %}{{ heading }}{% endblock %}{% block content %}
+<div class="panel narrow">
+    <span class="eyebrow">Завдання 2 · Flask-WTF</span>
+    <h1>{{ heading }}</h1>
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }} {{ render_field(form.name) }}{{
+        render_field(form.content) }}{{ render_field(form.price) }}{{
+        render_field(form.category) }}{{ render_field(form.quantity) }}{{
+        render_field(form.image) }} {% if product %}
+        <p class="muted">
+            Якщо не обирати новий файл, попереднє зображення залишиться.
+        </p>
+        {% endif %} {{ form.submit(class_='button full') }}
+    </form>
+</div>
+{% endblock %}

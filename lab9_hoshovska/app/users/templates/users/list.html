@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Користувачі | Post Studio{% endblock %}
+
+{% block content %}
+<section>
+    <div class="page-heading d-flex justify-content-between
+                align-items-end flex-wrap gap-3">
+        <div>
+            <span class="eyebrow">POST STUDIO / USERS</span>
+            <h1 class="display-6 fw-bold mt-3 mb-2">
+                Користувачі
+            </h1>
+            <p class="page-description">
+                Список зареєстрованих користувачів системи.
+            </p>
+        </div>
+
+        <span class="category">
+            Усього: {{ total }}
+        </span>
+    </div>
+
+    {% if users %}
+    <div class="article-shell" style="max-width: 100%;">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Ім'я користувача</th>
+                        <th scope="col">Електронна пошта</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td class="text-muted">#{{ user.id }}</td>
+                        <td class="fw-bold">{{ user.username }}</td>
+                        <td>{{ user.email or "Не вказано" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-state text-center">
+        <h2 class="fs-4 fw-bold">Користувачів поки немає</h2>
+        <p class="page-description">
+            Після реєстрації тут з'являться облікові записи.
+        </p>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

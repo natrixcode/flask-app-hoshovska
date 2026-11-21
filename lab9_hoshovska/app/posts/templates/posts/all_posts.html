@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Усі публікації{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('posts.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="page-heading d-flex flex-wrap align-items-end justify-content-between gap-3">
+    <div>
+        <div class="eyebrow">ВАША БІБЛІОТЕКА</div>
+
+        <h1 class="display-5 fw-bold mb-0">
+            Публікації<span class="brand-dot">.</span>
+        </h1>
+
+        <p class="page-description">
+            Ідеї, новини та історії в одному місці.
+        </p>
+    </div>
+
+    <a class="btn btn-dark"
+       href="{{ url_for('posts.create_post') }}">
+        Створити публікацію
+    </a>
+</div>
+
+{% if posts %}
+<div class="posts-grid">
+    {% for post in posts %}
+    <article class="post-card">
+        <img
+            src="{{ url_for('posts.static', filename='img/default.jpg') }}"
+            class="post-cover"
+            alt="Обкладинка публікації"
+        >
+
+        <div class="post-card-body">
+            <div class="post-card-meta">
+                <span class="category">
+                    {{ post.category }}
+                </span>
+
+                <span class="post-date">
+                    {{ post.posted.strftime('%d.%m.%Y') }}
+                </span>
+            </div>
+
+            <h2 class="post-card-title">
+                {{ post.title }}
+            </h2>
+
+            <p class="post-card-excerpt">
+                {{ post.content[:110] }}{% if post.content|length > 110 %}…{% endif %}
+            </p>
+
+            <a class="post-card-link"
+               href="{{ url_for('posts.detail_post', id=post.id) }}">
+                Читати далі
+            </a>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state text-center">
+    <h2>Поки що немає публікацій</h2>
+
+    <p class="text-muted">
+        Створіть першу публікацію.
+    </p>
+
+    <a href="{{ url_for('posts.create_post') }}"
+       class="btn btn-dark">
+        Додати пост
+    </a>
+</div>
+{% endif %}
+{% endblock %}

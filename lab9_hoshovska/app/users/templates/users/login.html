@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Вхід | Post Studio{% endblock %}
+
+{% block content %}
+<section class="mx-auto" style="max-width: 520px;">
+    <div class="article-shell">
+        <div class="mb-4">
+            <span class="eyebrow">POST STUDIO / ACCOUNT</span>
+
+            <h1 class="article-title fs-2 mt-3 mb-2">
+                З поверненням!
+            </h1>
+
+            <p class="page-description">
+                Увійдіть до свого облікового запису Post Studio.
+            </p>
+        </div>
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            {% for field in [form.username, form.password] %}
+            <div class="mb-3">
+                {{ field.label(class="form-label fw-semibold") }}
+
+                {{ field(
+                    class="form-control" + (" is-invalid" if field.errors else "")
+                ) }}
+
+                {% for error in field.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="form-check mt-3 mb-4">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+
+            {{ form.submit(class="btn btn-dark w-100") }}
+        </form>
+
+        <hr class="article-divider">
+
+        <p class="text-center text-muted small mb-0">
+            Ще немає облікового запису?
+            <a
+                href="{{ url_for('users.register') }}"
+                class="fw-bold text-dark"
+            >
+                Зареєструватися
+            </a>
+        </p>
+    </div>
+</section>
+{% endblock %}

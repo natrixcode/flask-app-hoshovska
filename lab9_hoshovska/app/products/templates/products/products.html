@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% block title %}Каталог товарів{% endblock %}{% block
+content %}
+<div class="heading">
+    <div>
+        <span class="eyebrow">Завдання 2</span>
+        <h1>Каталог товарів</h1>
+        <p class="muted">Всього товарів: {{ items|length }}</p>
+    </div>
+    <a class="button" href="{{ url_for('products.add_product') }}"
+        >+ Додати товар</a
+    >
+</div>
+<div class="grid">
+    {% for product in items %}
+    <article class="card">
+        <a href="{{ url_for('products.product_detail', id=product.id) }}">
+            {% set img = product_image_url(product.image) %}{% if img %}<img
+                class="thumb"
+                src="{{ img }}"
+                alt="{{ product.name }}"
+            />{% else %}
+            <div class="thumb placeholder">Без зображення</div>
+            {% endif %}
+            <h2>{{ product.name }}</h2></a
+        >
+        <p class="muted">{{ product.category }} · {{ product.quantity }} шт.</p>
+        <p class="price">{{ product.price }} грн</p>
+        <small>Додано: {{ product.created_at }}</small>
+    </article>
+    {% else %}
+    <div class="panel">
+        <h2>Товарів поки немає</h2>
+        <p>Додайте перший товар через форму.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Мій профіль | Post Studio{% endblock %}
+
+{% block content %}
+<section class="mx-auto" style="max-width: 680px;">
+    <div class="article-shell">
+
+        <span class="eyebrow">POST STUDIO / PROFILE</span>
+
+        <h1 class="article-title fs-2 mt-3 mb-2">
+            Мій профіль
+        </h1>
+
+        <p class="page-description">
+            Інформація про ваш обліковий запис.
+        </p>
+
+        <hr class="article-divider">
+
+        <div class="mb-4">
+            <p class="text-muted small mb-1">Ім'я користувача</p>
+            <h2 class="fs-5 fw-bold mb-0">
+                {{ current_user.username }}
+            </h2>
+        </div>
+
+        <div class="mb-4">
+            <p class="text-muted small mb-1">Електронна пошта</p>
+            <p class="fw-semibold mb-0">
+                {{ current_user.email or "Не вказано" }}
+            </p>
+        </div>
+
+        <div class="mb-4">
+            <p class="text-muted small mb-1">ID користувача</p>
+            <p class="fw-semibold mb-0">
+                #{{ current_user.id }}
+            </p>
+        </div>
+
+        <hr class="article-divider">
+
+        <div class="d-flex flex-wrap gap-2">
+            <a
+                href="{{ url_for('posts.all_posts') }}"
+                class="btn btn-dark"
+            >
+                Переглянути пости
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
